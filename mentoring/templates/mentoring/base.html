@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -229,7 +230,10 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-md sticky-top">
     <div class="container-narrow w-100" style="max-width:900px;">
-      <a class="navbar-brand" href="/">Angermeier.net</a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <img src="{% static 'logo.png' %}" alt="Angermeier.net Logo" height="36">
+        Angermeier.net
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
               aria-controls="navMenu" aria-expanded="false" aria-label="Navigation öffnen">
         <span class="navbar-toggler-icon"></span>
@@ -256,6 +260,10 @@
   <footer>
     <div class="container-narrow text-center">
       <span>&copy; {% now "Y" %} Angermeier.net – Alle Rechte vorbehalten.</span>
+      <span class="mx-2">|</span>
+      <a href="{% url 'impressum' %}" style="color:var(--color-muted);">Impressum</a>
+      <span class="mx-2">|</span>
+      <a href="{% url 'datenschutz' %}" style="color:var(--color-muted);">Datenschutz</a>
     </div>
   </footer>
 

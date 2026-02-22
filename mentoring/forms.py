@@ -1,4 +1,6 @@
 from django import forms
+from django.urls import reverse_lazy
+from django.utils.safestring import mark_safe
 from .models import Application
 
 
@@ -8,7 +10,7 @@ class ApplicationForm(forms.ModelForm):
         fields = [
             'name', 'email', 'role',
             'background', 'why', 'what_not_working', 'what_tried',
-            'ready_to_change', 'time_confirm', 'budget_confirm',
+            'ready_to_change', 'time_confirm', 'budget_confirm', 'privacy_consent',
         ]
         labels = {
             'name': 'Dein Name',
@@ -66,4 +68,22 @@ class ApplicationForm(forms.ModelForm):
             'budget_confirm': forms.CheckboxInput(attrs={
                 'class': 'form-check-input',
             }),
+            'privacy_consent': forms.CheckboxInput(attrs={
+                'class': 'form-check-input',
+            }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['privacy_consent'].label = mark_safe(
+            f'Ich habe die <a href="{reverse_lazy("datenschutz")}" target="_blank">'
+            f'Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.'
+        )
+
+    def clean_privacy_consent(self):
+        value = self.cleaned_data.get('privacy_consent')
+        if not value:
+            raise forms.ValidationError(
+                'Bitte stimme der Datenschutzerklärung zu, um die Bewerbung abzusenden.'
+            )
+        return value
