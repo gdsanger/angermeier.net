@@ -28,6 +28,14 @@ def apply_success(request):
     return render(request, 'mentoring/apply_success.html')
 
 
+def impressum(request):
+    return render(request, 'mentoring/impressum.html')
+
+
+def datenschutz(request):
+    return render(request, 'mentoring/datenschutz.html')
+
+
 def _send_emails(application):
     # Confirmation to applicant
     try:

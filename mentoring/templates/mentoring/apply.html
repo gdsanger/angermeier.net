@@ -112,6 +112,16 @@
             <div class="invalid-feedback d-block">{{ form.budget_confirm.errors|join:", " }}</div>
           {% endif %}
         </div>
+
+        <div class="form-check mb-3">
+          {{ form.privacy_consent }}
+          <label class="form-check-label" for="{{ form.privacy_consent.id_for_label }}">
+            {{ form.privacy_consent.label }}
+          </label>
+          {% if form.privacy_consent.errors %}
+            <div class="invalid-feedback d-block">{{ form.privacy_consent.errors|join:", " }}</div>
+          {% endif %}
+        </div>
       </div>
 
       <!-- Submit -->

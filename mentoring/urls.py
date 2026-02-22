@@ -5,4 +5,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('bewerben/', views.apply, name='apply'),
     path('bewerben/danke/', views.apply_success, name='apply_success'),
+    path('impressum/', views.impressum, name='impressum'),
+    path('datenschutz/', views.datenschutz, name='datenschutz'),
 ]

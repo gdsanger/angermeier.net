@@ -28,6 +28,7 @@ class Application(models.Model):
     ready_to_change = models.BooleanField(default=False)
     time_confirm = models.BooleanField(default=False, help_text="Zeit für Umsetzung vorhanden")
     budget_confirm = models.BooleanField(default=False, help_text="4-stelliger Betrag/Monat ist ok")
+    privacy_consent = models.BooleanField(default=False, help_text="Datenschutzerklärung akzeptiert")
 
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.NEW)
     notes_internal = models.TextField(blank=True)
