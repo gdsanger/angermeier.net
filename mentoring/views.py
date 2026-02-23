@@ -1,7 +1,8 @@
 import logging
 from django.shortcuts import render, redirect
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 from .forms import ApplicationForm
 
@@ -37,25 +38,37 @@ def datenschutz(request):
 
 
 def _send_emails(application):
+    email_context_base = {
+        'impressum_url': f'{settings.SITE_BASE_URL}/impressum',
+        'datenschutz_url': f'{settings.SITE_BASE_URL}/datenschutz',
+    }
+    from_email = settings.EMAIL_HOST_USER or 'noreply@angermeier.net'
+
     # Confirmation to applicant
     try:
-        send_mail(
-            subject='Deine Bewerbung bei Angermeier.net',
-            message=(
-                f'Hallo {application.name},\n\n'
-                'vielen Dank für deine Bewerbung. Wir haben sie erhalten und melden uns in Kürze bei dir.\n\n'
-                'Beste Grüße\nChristian Angermeier\nangermeier.net'
-            ),
-            from_email=settings.EMAIL_HOST_USER or 'noreply@angermeier.net',
-            recipient_list=[application.email],
-            fail_silently=False,
+        plain_text = (
+            f'Hallo {application.name},\n\n'
+            'vielen Dank für deine Bewerbung. Wir haben sie erhalten und melden uns in Kürze bei dir.\n\n'
+            'Beste Grüße\nChristian Angermeier\nangermeier.net'
         )
+        html_body = render_to_string(
+            'mentoring/email/application_confirmation.html',
+            {**email_context_base, 'name': application.name},
+        )
+        msg = EmailMultiAlternatives(
+            subject='Deine Bewerbung bei Angermeier.net',
+            body=plain_text,
+            from_email=from_email,
+            to=[application.email],
+        )
+        msg.attach_alternative(html_body, 'text/html')
+        msg.send(fail_silently=False)
     except Exception:
         logger.exception('Failed to send confirmation email to applicant %s', application.email)
 
     # Notification to admin
     try:
-        detail_lines = [
+        plain_text = '\n'.join([
             f'Neue Bewerbung eingegangen:\n',
             f'Name:    {application.name}',
             f'E-Mail:  {application.email}',
@@ -67,13 +80,30 @@ def _send_emails(application):
             f'\nBereit zur Veränderung: {"Ja" if application.ready_to_change else "Nein"}',
             f'Zeit bestätigt:         {"Ja" if application.time_confirm else "Nein"}',
             f'Budget bestätigt:       {"Ja" if application.budget_confirm else "Nein"}',
-        ]
-        send_mail(
-            subject=f'[Mentoring] Neue Bewerbung von {application.name}',
-            message='\n'.join(detail_lines),
-            from_email=settings.EMAIL_HOST_USER or 'noreply@angermeier.net',
-            recipient_list=[settings.ADMIN_EMAIL],
-            fail_silently=False,
+        ])
+        html_body = render_to_string(
+            'mentoring/email/application_admin.html',
+            {
+                **email_context_base,
+                'name': application.name,
+                'email': application.email,
+                'role': application.get_role_display(),
+                'background': application.background,
+                'why': application.why,
+                'what_not_working': application.what_not_working,
+                'what_tried': application.what_tried,
+                'ready_to_change': 'Ja' if application.ready_to_change else 'Nein',
+                'time_confirm': 'Ja' if application.time_confirm else 'Nein',
+                'budget_confirm': 'Ja' if application.budget_confirm else 'Nein',
+            },
         )
+        msg = EmailMultiAlternatives(
+            subject=f'[Mentoring] Neue Bewerbung von {application.name}',
+            body=plain_text,
+            from_email=from_email,
+            to=[settings.ADMIN_EMAIL],
+        )
+        msg.attach_alternative(html_body, 'text/html')
+        msg.send(fail_silently=False)
     except Exception:
         logger.exception('Failed to send admin notification email')

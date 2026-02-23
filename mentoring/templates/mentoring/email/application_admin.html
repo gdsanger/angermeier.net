@@ -1,0 +1,41 @@
+{% extends "mentoring/email/base_email.html" %}
+{% block content %}
+<p style="margin:0 0 16px 0;font-weight:700;">Neue Bewerbung eingegangen:</p>
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+  <tr>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#6B6B6B;width:140px;vertical-align:top;">Name</td>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#1C1C1E;vertical-align:top;">{{ name }}</td>
+  </tr>
+  <tr>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#6B6B6B;vertical-align:top;">E-Mail</td>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#1C1C1E;vertical-align:top;">{{ email }}</td>
+  </tr>
+  <tr>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#6B6B6B;vertical-align:top;">Rolle</td>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#1C1C1E;vertical-align:top;">{{ role }}</td>
+  </tr>
+</table>
+<hr style="border:none;border-top:1px solid #E5E5E5;margin:20px 0;">
+<p style="margin:0 0 8px 0;font-weight:700;">Hintergrund</p>
+<p style="margin:0 0 16px 0;">{{ background }}</p>
+<p style="margin:0 0 8px 0;font-weight:700;">Warum</p>
+<p style="margin:0 0 16px 0;">{{ why }}</p>
+<p style="margin:0 0 8px 0;font-weight:700;">Was funktioniert nicht</p>
+<p style="margin:0 0 16px 0;">{{ what_not_working }}</p>
+<p style="margin:0 0 8px 0;font-weight:700;">Was wurde versucht</p>
+<p style="margin:0 0 16px 0;">{{ what_tried }}</p>
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+  <tr>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#6B6B6B;width:200px;vertical-align:top;">Bereit zur Veränderung</td>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#1C1C1E;vertical-align:top;">{{ ready_to_change }}</td>
+  </tr>
+  <tr>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#6B6B6B;vertical-align:top;">Zeit bestätigt</td>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#1C1C1E;vertical-align:top;">{{ time_confirm }}</td>
+  </tr>
+  <tr>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#6B6B6B;vertical-align:top;">Budget bestätigt</td>
+    <td style="padding:6px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#1C1C1E;vertical-align:top;">{{ budget_confirm }}</td>
+  </tr>
+</table>
+{% endblock %}
