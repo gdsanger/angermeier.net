@@ -83,6 +83,7 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
 ADMIN_EMAIL = config('ADMIN_EMAIL', default='ca@angermeier.net')
+SITE_BASE_URL = config('SITE_BASE_URL', default='https://angermeier.net')
 
 # Security
 SECURE_BROWSER_XSS_FILTER = True
