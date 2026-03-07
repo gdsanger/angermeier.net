@@ -4,7 +4,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Angermeier.net – Mentoring{% endblock %}</title>
+  <title>KI Mentoring für Softwareentwickler & Tech Leads – Architektur, Struktur und KI-Integration</title>
+  <meta name="description" content="Mentoring für Softwareentwickler, Architekten und Tech Leads: Transformation vom Implementierer zum Architekten im KI-Zeitalter. Fokus auf Architekturdenken, Struktur, KI-Integration und systematische Entwicklungsprozesse.">
+<meta name="author" content="Christian Angermeier">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://angermeier.net/">
+
+<meta property="og:title" content="Mentoring – Denkweise in der Software-Entwicklung mit KI">
+<meta property="og:description" content="Transformation vom Implementierer zum Architekten im KI-Zeitalter. Mentoring für Entwickler, Architekten und Tech Leads, die KI strukturell in ihre Entwicklungsprozesse integrieren wollen.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://angermeier.net/">
+<meta property="og:image" content="https://angermeier.net/static/social/ki-mentoring-og.png">
+<meta property="og:locale" content="de_DE">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KI Mentoring für Softwareentwickler, Architekten und Tech Leads">
+<meta property="og:site_name" content="Christian Angermeier">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KI Mentoring für Softwareentwickler & Tech Leads">
+<meta name="twitter:description" content="Vom Implementierer zum Architekten im KI-Zeitalter. Mentoring für Entwickler, die KI strukturell in ihre Arbeitsweise integrieren wollen.">
+<meta name="twitter:image" content="https://angermeier.net/static/social/ki-mentoring-og.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "KI Mentoring für Softwareentwickler",
+  "description": "Mentoring für Softwareentwickler, Architekten und Tech Leads zur strukturellen Integration von KI in Entwicklungsprozesse.",
+  "provider": {
+    "@type": "Person",
+    "name": "Christian Angermeier",
+    "url": "https://angermeier.net/"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Deutschland"
+  },
+  "serviceType": "Mentoring für Softwareentwicklung und KI-Integration",
+  "url": "https://angermeier.net/",
+  "inLanguage": "de-DE"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ist das Mentoring ein Coaching für KI-Tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Der Fokus liegt nicht auf Tools oder Prompt-Techniken. Es geht darum, KI strukturell in Entwicklungsprozesse, Architektur und Entscheidungsfindung zu integrieren. Tools sind dabei nur Mittel zum Zweck."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Für wen ist das Mentoring geeignet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Mentoring richtet sich an Softwareentwickler, Architekten und Tech Leads, die bereits Verantwortung für Architektur oder Systeme tragen und merken, dass KI ihre Rolle verändert."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was unterscheidet dieses Mentoring von klassischem Coaching?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Klassisches Coaching fokussiert häufig auf Produktivität, Tools oder persönliche Entwicklung. Dieses Mentoring konzentriert sich auf Struktur, Architekturdenken und die Integration von KI in Entwicklungsprozesse."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie läuft das Mentoring konkret ab?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nach Bewerbung und Kennenlern-Gespräch analysieren wir deine aktuelle Arbeitsweise, Architektur und Prozesse. Anschließend arbeiten wir strukturiert daran, KI sinnvoll zu integrieren und klare Entwicklungsstrukturen aufzubauen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viel Zeit muss ich investieren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Geplant ist eine Session pro Woche mit etwa zwei bis drei Stunden. Zusätzlich solltest du Zeit für die Umsetzung der besprochenen Strukturänderungen in deinem Arbeitsalltag einplanen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert das Mentoring?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Mentoring ist zunächst auf drei Monate angelegt. Danach kann es bei Bedarf verlängert oder abgeschlossen werden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist das Mentoring auch für Einsteiger geeignet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Das Angebot richtet sich an Entwickler mit Verantwortung für Systeme, Architektur oder technische Entscheidungen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet das Mentoring?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Mentoring bewegt sich im kleinen vierstelligen Bereich pro Monat. Ob eine Zusammenarbeit sinnvoll ist, klären wir im Kennenlern-Gespräch."
+      }
+    }
+  ]
+}
+</script>
 
   <!-- Inter Font (local) -->
   <link href="{% static 'vendor/fonts/inter.css' %}" rel="stylesheet">
@@ -222,6 +335,7 @@
   </style>
 
   {% block extra_head %}{% endblock %}
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="fb89e415-cf71-4d0e-8bf6-64c0392d28f4"></script>
 </head>
 <body>
 
