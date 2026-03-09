@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+from django.http import HttpResponse
 
 from .forms import ApplicationForm
 
@@ -12,6 +13,41 @@ logger = logging.getLogger(__name__)
 def index(request):
     return render(request, 'mentoring/index.html')
 
+def robots_txt(request):
+    content = """User-agent: *
+Allow: /
+
+Sitemap: https://angermeier.net/sitemap.xml
+"""
+    return HttpResponse(content, content_type="text/plain")
+
+
+def sitemap_xml(request):
+    content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://angermeier.net/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://angermeier.net/bewerben/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://angermeier.net/impressum/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://angermeier.net/datenschutz/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>
+"""
+    return HttpResponse(content, content_type="application/xml")
 
 def apply(request):
     if request.method == 'POST':
